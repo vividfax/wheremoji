@@ -5,6 +5,7 @@ let wally;
 
 let thud;
 let ding;
+let munch;
 
 function setup() {
 
@@ -15,8 +16,9 @@ function setup() {
 
     emojis = shuffle(emojis);
 
-    thud = createPlayer("samples/thud.WAV");
+    thud = createPlayer("samples/thud.wav");
     ding = createPlayer("samples/ding.wav");
+    munch = createPlayer("samples/munch.mp3");
 
     noLoop();
     display();
@@ -50,9 +52,7 @@ function display() {
     if (wally) {
         noise.push(wally.emoji);
     }
-
     if (noise.length == 0) {
-
         noise.push(emojis.pop());
     }
     if (emojis.length == 0) {
@@ -84,20 +84,23 @@ function display() {
         rectMode(CENTER);
         fill("#7A4DB2");
         rect(width/2 + 10, height/2 + 10, 400, 300, 0);
+        strokeWeight(1.5);
+        stroke("#7A4DB2");
         fill("#FFC83A");
         rect(width/2, height/2, 400, 300, 0);
 
+        noStroke();
         textSize(60);
         fill("#fff");
         displayText("wally is\ncomplete!", width/2, height/2, 3);
     }
-
 }
 
 function mousePressed() {
 
     if (wally.clicked()) {
         ding.start();
+        munch.start();
         loop();
     } else {
         thud.start();
