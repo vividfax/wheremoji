@@ -1,11 +1,16 @@
-let emojis = ["🥳", "🥰", "😭", "😇", "😍", "🤣", "😘", "🤪", "🤓", "😎", "😱", "😴", "😵", "🤯", "🤑", "😳", "🤬", "😁", "😫", "😷", "🙃"];
-// let emojis = ["🤬", "😱", "😭"];
+let emojis = [];
+let tier1 = ["😍", "🤑", "😎", "😱", "🤪", "🤓"];
+let tier2 = ["🥳", "🥰", "😇", "🤣", "😘", "😴", "😵", "🤯", "😳", "😫", "😷", "🤬", "😭", "😁", "🙃"];
+
 let noise = [];
 let wally;
 
 let thud;
 let ding;
 let munch;
+let muzak;
+
+let interacted = false;
 
 function setup() {
 
@@ -14,11 +19,15 @@ function setup() {
     textAlign(CENTER, CENTER);
     textFont("Gaegu");
 
-    emojis = shuffle(emojis);
+    emojis = emojis.concat(shuffle(tier2));
+    emojis = emojis.concat(shuffle(tier1));
 
     thud = createPlayer("samples/thud.wav");
     ding = createPlayer("samples/ding.wav");
     munch = createPlayer("samples/munch.mp3");
+
+    muzak = new Audio("samples/muzak.ogg");
+    muzak.loop = true;
 
     noLoop();
     display();
@@ -98,6 +107,10 @@ function display() {
 
 function mousePressed() {
 
+    if (!interacted) {
+        muzak.play();
+        interacted = true;
+    }
     if (wally.clicked()) {
         ding.start();
         munch.start();
