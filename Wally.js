@@ -10,7 +10,7 @@ class Wally {
     display() {
 
         if (this.emoji != "complete") {
-            text(this.emoji, this.x, this.y);
+            image(this.emoji, this.x, this.y, 30, 30);
         }
     }
 
@@ -18,7 +18,7 @@ class Wally {
 
         let distance = dist(this.x, this.y, mouseX, mouseY);
 
-        if (distance < textSize()/2) {
+        if (distance < 15) {
             return true;
         }
         return false;
