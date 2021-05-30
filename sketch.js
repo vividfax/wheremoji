@@ -24,7 +24,6 @@ function preload() {
     nerd = loadImage("pngs/nerd-face_1f913.png");
     hot = loadImage("pngs/hot-face_1f975.png");
 
-    partyFace = loadImage("pngs/partying-face_1f973.png");
     threeHearts = loadImage("pngs/smiling-face-with-hearts_1f970.png");
     halo = loadImage("pngs/smiling-face-with-halo_1f607.png");
     rofl = loadImage("pngs/rolling-on-the-floor-laughing_1f923.png");
@@ -45,11 +44,15 @@ function preload() {
     dash = loadImage("pngs/expressionless-face_1f611.png");
     mouthless = loadImage("pngs/face-without-mouth_1f636.png");
 
-    let tier1 = [heartEyes, money, sunglasses, scream, zany, nerd, hot];
-    let tier2 = [partyFace, threeHearts, halo, rofl, kiss, dead, explode, wideEye, wah, mask, swear, cry, grin, upsideDown, please, starEyes, yum, hands, dash, mouthless];
+    partyFace = loadImage("pngs/partying-face_1f973.png");
 
-    emojis = shuffle(tier2);
-    emojis = emojis.concat(shuffle(tier1));
+    let easy = [heartEyes, money, sunglasses, scream, zany, nerd, hot];
+    let hard = [threeHearts, halo, rofl, kiss, dead, explode, wideEye, wah, mask, swear, cry, grin, upsideDown, please, starEyes, yum, hands, dash, mouthless];
+    let finale = [partyFace];
+
+    emojis = finale;
+    emojis = emojis.concat(shuffle(hard));
+    emojis = emojis.concat(shuffle(easy));
 }
 
 function setup() {
